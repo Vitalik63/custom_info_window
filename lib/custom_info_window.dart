@@ -85,7 +85,7 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
     ScreenCoordinate screenCoordinate = await widget
         .controller.googleMapController!
         .getScreenCoordinate(_latLng!);
-    double devicePixelRatio = kIsWeb && Platform.isAndroid
+    double devicePixelRatio = !kIsWeb && Platform.isAndroid
         ? MediaQuery.of(context).devicePixelRatio
         : 1.0;
     double left =
