@@ -2,6 +2,7 @@
 library custom_info_window;
 
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -84,8 +85,9 @@ class _CustomInfoWindowState extends State<CustomInfoWindow> {
     ScreenCoordinate screenCoordinate = await widget
         .controller.googleMapController!
         .getScreenCoordinate(_latLng!);
-    double devicePixelRatio =
-        Platform.isAndroid ? MediaQuery.of(context).devicePixelRatio : 1.0;
+    double devicePixelRatio = kIsWeb && Platform.isAndroid
+        ? MediaQuery.of(context).devicePixelRatio
+        : 1.0;
     double left =
         (screenCoordinate.x.toDouble() / devicePixelRatio) - (widget.width / 2);
     double top = (screenCoordinate.y.toDouble() / devicePixelRatio) -
